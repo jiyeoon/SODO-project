@@ -6,3 +6,22 @@
 ```bash
 $source django/bin/acitavte
 ```
+
+# Download Requrirements
+
+```bash
+$pip install -r requirements.txt
+```
+
+And then
+
+```bash
+$python manage.py migrate
+```
+
+# Run Server
+
+```bash
+$ cd DOICE
+$ python manage.py runserver
+```
