@@ -1,2 +1,4 @@
 djangorestframework
 django
+django-rest-knox
+pillow
