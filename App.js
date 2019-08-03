@@ -1,28 +1,26 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
-import { LoginButton } from 'react-native-fbsdk';
+import React, {Component} from 'react';
 
-export default class FBLoginButton extends Component {
-  render() {
-    return (
-      <View>
-        <LoginButton
-          publishPermissions={["email"]}
-          onLoginFinished={
-            (error, result) => {
-              if (error) {
-                alert("Login failed with error: " + error.message);
-              } else if (result.isCancelled) {
-                alert("Login was cancelled");
-              } else {
-                alert("Login was successful with permissions: " + result.grantedPermissions)
-              }
-            }
-          }
-          onLogoutFinished={() => alert("User logged out")}/>
-      </View>
-    );
-  }
-};
+import {StyleSheet, Text, View, Image, TextInput} from 'react-native';
+import login from "./login"
+import CustomButton from './CustomButton';
+import create from './create'
+import {createStackNavigator, createAppContainer } from 'react-navigation';
+import { firstFromTime } from 'uuid-js';
+import MainScreen from './MainScreen';
+import board from "./board";
+import { componentFromProp } from 'recompose';
+import MinMaxTextInput  from './AppTabNavigator/MinMaxTextInput'
+import add from './AppTabNavigator/HomeTab';
 
-module.exports = FBLoginButton;
+const AppStackNavigator = createStackNavigator({
+  main:{screen:MainScreen},
+  HOME: {screen: login},
+  second:{screen:create},
+  card:{screen:add},
+  
+  },
+  { initialRouteName:"HOME",headerMode:"null"}
+  );//시작페이지 설정
+
+export default createAppContainer(AppStackNavigator);//stack에 쌓아두고 이동
+
